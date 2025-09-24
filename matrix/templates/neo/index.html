@@ -1,0 +1,22 @@
+{% extends "neo/base.html" %}
+{% block body_block %}
+
+<div class="container" width="100%" >
+  <div class="jumbotron">
+    <h2>Secure File Transfer Application</h2>
+  </div>
+  <div>
+    {% if user.is_authenticated %}
+        <h3>Welcome {{ user.username }}!</h3>
+    {% else %}
+        <h3>Welcome to the site!</h3>
+    {% endif %}
+  </div>
+  <div>
+    <p style="color:rgb(22, 21, 21);">
+      Welcome to a no-trust platform where you can securely transfer a file to the desired recipient securely.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "neo/base.html" %}
+{% load static %}
+
+{% block body_block %}
+<div class="container">
+    <div>
+        <form method="post" enctype="multipart/form-data" action="{% url 'neo:download_file' %}">
+            {% csrf_token %}
+            {# A more "HTML" way of creating the login form#}
+            <div class="col-md-8 col-md-offset-2">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                    Download File
+                  </div>
+                  <div class="alert alert-warning" role="alert">
+                      Please note files uploaded are deleted after 7 days.
+                    </div>
+                  <div class="panel-body">
+                      {% if error_message %}
+                          <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                      {% endif %}
+                      <div class="form-group clearfix">
+                          <label for="file_name" name="file_name" class="col-md-4 control-label text-right">File Name:</label>
+                          <div class="col-md-6">
+                              {{ file.file_name }}
+                          </div>
+                          <input type="hidden" id="file_path" name="file_path" value="{{ file.file_path }}" />
+                          <input type="hidden" id="file_name" name="file_name" value="{{ file.file_name }}" />
+                      </div>
+                      <div class="form-group clearfix">
+                        <label for="secret_key" name="secret_key" class="col-md-4 control-label text-right">Encryption Key:</label>
+                        <div class="col-md-6">
+                            <input type="text" name="secret_key" placeholder="Key">
+                        </div>
+                    </div>
+                      
+                      <div class="col-md-6 col-md-offset-4">
+                          <input name="download" type="submit" value="Download" class="btn btn-success" /> &nbsp;
+                      </div>
+                  </div>
+              </div>
+          </div>
+  
+          </form>
+
+    </div>
+  </div>
+
+{% endblock %}

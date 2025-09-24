@@ -1,0 +1,15 @@
+{% extends "neo/base.html" %}
+{% load static %}
+
+{% block body_block %}
+<div class="container" width="100%" >
+    <div class="alert alert-warning" role="alert">
+        Please note files uploaded are deleted after 7 days.
+    </div>
+    <div class="jumbotron" style="background-color:#c0d0c0;">
+      <h4>You have successfully transferred encrypted file : '{{data.file_name}}' to receipent : '{{data.receiver_email}}' </h4>
+      <h5>Please share the encryption key via a secure channel to avoid any unauthorized access.</h5>
+    </div>
+  </div>
+
+{% endblock %}

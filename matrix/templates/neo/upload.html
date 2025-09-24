@@ -1,0 +1,55 @@
+{% extends "neo/base.html" %}
+{% load static %}
+
+{% block body_block %}
+<div class="container">
+    <div>
+
+        <form method="post" enctype="multipart/form-data" action="{% url 'neo:file_upload' %}">
+          {% csrf_token %}
+          {# A more "HTML" way of creating the login form#}
+          <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                  File Transfer
+                </div>
+                <div class="alert alert-warning" role="alert">
+                    Please note files uploaded are deleted after 7 days.
+                  </div>
+                <div class="panel-body">
+                    {% if error_message %}
+                        <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                    {% endif %}
+                    <div class="form-group clearfix">
+                        <label for="receiver_email" name="receiver_email" class="col-md-4 control-label text-right">Receiver Email:</label>
+                        <div class="col-md-6">
+                            <input type="text" name="reciever_email" placeholder="Receiver Email">
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label for="secret_key" name="secret_key" class="col-md-4 control-label text-right">Encryption Key:</label>
+                        <div class="col-md-6">
+                            <input type="text" name="secret_key" placeholder="Key">
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label for="upload_file" name="upload_file" class="col-md-4 control-label text-right">Upload File:</label>
+                        <div class="col-md-6">
+                            <input type="file" class="form-control-file" id="upload_file" name=upload_file required style=" display: inline !important " />
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="col-md-6 col-md-offset-4">
+                        <input name="upload" type="submit" value="Transfer" class="btn btn-success" /> &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </form>
+
+    </div>
+  </div>
+
+{% endblock %}

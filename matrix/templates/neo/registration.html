@@ -1,0 +1,31 @@
+{% extends "neo/base.html" %}
+{% load static %}
+
+{% block body_block %}
+<div class="col-md-4 col-md-offset-4">
+  <div class="panel panel-default">
+    {% if registered %}
+      <p class="text-success p-d ml-b">Thank you for registering</p>
+    {% else %}
+    <div class="panel-heading">
+      <h3>Register Here</h3>
+      <h4>Fill out the below form:</h4>
+
+    </div>
+
+      <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <div class="form-group clearfix">
+          <div class="panel-body">
+            {{ user_form.as_p }}
+            <input type="submit" class="btn btn-success" name="" value="Register">
+        </div>
+      </form>
+
+    {% endif %}
+
+  </div>
+
+</div>
+
+{% endblock %}
